@@ -60,7 +60,11 @@ export default function Home() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold tracking-tight text-white max-w-4xl leading-[0.95]"
+            className="text-6xl md:text-8xl lg:text-9xl font-heading font-bold tracking-tight text-white max-w-4xl leading-[0.95]"
+            style={{
+              WebkitTextStroke: "2px #F5B01D",
+              textShadow: "0 0 1px #F5B01D, 0 2px 30px rgba(0,0,0,0.8)"
+            }}
           >
             Construimos espacios que transforman.
           </motion.h1>
