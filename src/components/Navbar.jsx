@@ -26,8 +26,9 @@ export default function Navbar() {
     setMobileOpen(false);
   }, [location.pathname]);
 
-  const isHome = location.pathname === "/";
-  const isTransparent = isHome && !scrolled && !mobileOpen;
+  // Páginas con hero de collage a pantalla completa — el navbar flota transparente sobre la foto.
+  const hasPhotoHero = location.pathname === "/" || location.pathname === "/proyectos";
+  const isTransparent = hasPhotoHero && !scrolled && !mobileOpen;
 
   return (
     <>
