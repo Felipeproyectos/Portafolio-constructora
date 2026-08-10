@@ -1,8 +1,23 @@
 import { useState } from "react";
 import { base44 } from "@/api/base44Client";
-import { Folder, Loader2, RefreshCw, Check, AlertCircle, ImageIcon, FileText, Link2 } from "lucide-react";
+import { Folder, Loader2, RefreshCw, Check, AlertCircle, ImageIcon, FileText, Link2, Search } from "lucide-react";
 
 const IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/bmp', 'image/tiff'];
+
+// Extract folder ID from a Drive URL or accept a raw ID
+function parseFolderId(input) {
+  if (!input) return null;
+  const trimmed = input.trim();
+  // Match /folders/ID pattern
+  const match = trimmed.match(/\/folders\/([a-zA-Z0-9_-]+)/);
+  if (match) return match[1];
+  // Match id=ID pattern
+  const idMatch = trimmed.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+  if (idMatch) return idMatch[1];
+  // Assume raw ID (Drive IDs are typically 20-33 chars, alphanumeric with - and _)
+  if (/^[a-zA-Z0-9_-]{15,}$/.test(trimmed)) return trimmed;
+  return null;
+}
 
 export default function DriveSyncTab({ projectId, project, setProject, stages }) {
   const [browsing, setBrowsing] = useState(false);
@@ -14,6 +29,8 @@ export default function DriveSyncTab({ projectId, project, setProject, stages })
   const [importResult, setImportResult] = useState(null);
   const [selectedStageId, setSelectedStageId] = useState("");
   const [error, setError] = useState(null);
+  const [manualInput, setManualInput] = useState("");
+  const [manualError, setManualError] = useState(null);
 
   const browseFolders = async () => {
     setBrowsing(true);
@@ -43,6 +60,28 @@ export default function DriveSyncTab({ projectId, project, setProject, stages })
       setFiles(res.data.files);
     } catch (e) {
       setError(e.response?.data?.error || e.message || "Error al listar archivos");
+    } finally {
+      setLoadingFiles(false);
+    }
+  };
+
+  const loadManualFolder = async () => {
+    const folderId = parseFolderId(manualInput);
+    if (!folderId) {
+      setManualError("Enlace o ID de carpeta no válido. Pegue la URL de la carpeta de Drive o su ID.");
+      return;
+    }
+    setManualError(null);
+    setError(null);
+    setImportResult(null);
+    setFolders([]);
+    setSelectedFolder({ id: folderId, name: `Carpeta ${folderId.substring(0, 8)}...` });
+    setLoadingFiles(true);
+    try {
+      const res = await base44.functions.invoke("driveSync", { action: "list_files", folderId });
+      setFiles(res.data.files);
+    } catch (e) {
+      setError(e.response?.data?.error || e.message || "No se pudo acceder a la carpeta. Verifique que tenga permisos.");
     } finally {
       setLoadingFiles(false);
     }
@@ -117,6 +156,47 @@ export default function DriveSyncTab({ projectId, project, setProject, stages })
             {browsing ? "Cargando..." : "Explorar Drive"}
           </button>
         </div>
+      </div>
+
+      {/* Manual folder input */}
+      <div className="border border-border p-6">
+        <h4 className="font-mono text-xs tracking-wider uppercase text-muted-foreground mb-3">
+          Indicar carpeta manualmente
+        </h4>
+        <p className="text-sm text-muted-foreground mb-4">
+          Pegue el enlace de la carpeta de Google Drive o su ID directamente.
+        </p>
+        <div className="flex flex-col md:flex-row gap-3">
+          <div className="flex-1 relative">
+            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+            <input
+              type="text"
+              value={manualInput}
+              onChange={(e) => setManualInput(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && loadManualFolder()}
+              placeholder="https://drive.google.com/drive/folders/..."
+              className="w-full pl-10 pr-4 py-3 border border-border bg-background text-sm font-mono"
+            />
+          </div>
+          <button
+            onClick={loadManualFolder}
+            disabled={loadingFiles || !manualInput.trim()}
+            className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-foreground text-background text-sm font-medium hover:bg-primary hover:text-primary-foreground transition-colors disabled:opacity-50 shrink-0"
+          >
+            {loadingFiles ? <Loader2 size={16} className="animate-spin" /> : <Search size={16} />}
+            {loadingFiles ? "Cargando..." : "Cargar carpeta"}
+          </button>
+        </div>
+        {manualError && (
+          <p className="text-sm text-red-600 mt-3">{manualError}</p>
+        )}
+      </div>
+
+      {/* Divider with "o" */}
+      <div className="flex items-center gap-4">
+        <div className="flex-1 h-px bg-border" />
+        <span className="font-mono text-xs text-muted-foreground">o explore sus carpetas</span>
+        <div className="flex-1 h-px bg-border" />
       </div>
 
       {/* Folder browser */}
