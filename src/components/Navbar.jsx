@@ -45,8 +45,8 @@ export default function Navbar() {
                 src={LOGO_URL}
                 fittingType="fit"
                 alt="Constructora AvenZinc"
-                className="h-16 w-52 rounded-sm"
-                style={{ mixBlendMode: isTransparent ? "normal" : "multiply" }}
+                className="h-20 w-64 rounded-sm"
+                style={{ mixBlendMode: "multiply" }}
               />
             </Link>
 
