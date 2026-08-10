@@ -2,8 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Image } from "@/components/ui/image";
-
-const LOGO_ICON_URL = "https://media.base44.com/images/public/6a7a0d673c6e832f34f21db3/7fa83ac21_generated_image.png";
+import WatermarkLogo from "@/components/shared/WatermarkLogo";
 
 export default function CarouselGallery({ photos, onImageClick }) {
   const [current, setCurrent] = useState(0);
@@ -72,12 +71,9 @@ export default function CarouselGallery({ photos, onImageClick }) {
           </motion.div>
         </AnimatePresence>
 
-        <img
-          src={LOGO_ICON_URL}
-          alt=""
-          aria-hidden="true"
-          className="absolute top-4 right-4 w-20 h-20 object-contain opacity-95 pointer-events-none drop-shadow-2xl z-10"
-        />
+        <div className="absolute top-4 right-4 pointer-events-none drop-shadow-2xl z-10">
+          <WatermarkLogo size={72} className="opacity-95" />
+        </div>
 
         {photo.caption && (
           <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-foreground/80 to-transparent">

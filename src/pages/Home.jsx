@@ -6,6 +6,7 @@ import { base44 } from "@/api/base44Client";
 import { Image } from "@/components/ui/image";
 import SectionHeading from "@/components/shared/SectionHeading";
 import ProjectCard from "@/components/shared/ProjectCard";
+import WatermarkLogo from "@/components/shared/WatermarkLogo";
 
 const HERO_IMAGE = "https://base44.app/api/apps/6a7a0d673c6e832f34f21db3/files/mp/public/6a7a0d673c6e832f34f21db3/678c50aee_IMG-20221011-WA0008.jpg";
 const LOGO_URL = "https://media.base44.com/images/public/6a7a0d673c6e832f34f21db3/a33f0ae2c_WhatsAppImage2026-08-06at93236AM.jpg";
@@ -41,6 +42,10 @@ export default function Home() {
           <Image src={HERO_IMAGE} alt="Obra constructora" fittingType="fill" className="w-full h-full object-cover" />
         </motion.div>
         <div className="absolute inset-0 bg-gradient-to-b from-foreground/40 via-foreground/30 to-foreground/80" />
+
+        <div className="absolute top-24 right-8 lg:right-10 z-10 drop-shadow-2xl">
+          <WatermarkLogo size={96} className="opacity-90" />
+        </div>
 
         <motion.div style={{ opacity: heroOpacity }} className="relative z-10 h-full flex flex-col justify-center max-w-[1400px] mx-auto px-6 lg:px-10">
           <motion.p

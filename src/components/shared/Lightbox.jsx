@@ -2,8 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut } from "lucide-react";
 import { Image } from "@/components/ui/image";
-
-const LOGO_ICON_URL = "https://media.base44.com/images/public/6a7a0d673c6e832f34f21db3/7fa83ac21_generated_image.png";
+import WatermarkLogo from "@/components/shared/WatermarkLogo";
 
 export default function Lightbox({ images, index, onClose }) {
   const [currentIndex, setCurrentIndex] = useState(index);
@@ -85,12 +84,9 @@ export default function Lightbox({ images, index, onClose }) {
                   fittingType="fit"
                   className={`w-full h-full object-contain transition-transform duration-300 ${zoomed ? "scale-150 cursor-zoom-out" : "cursor-zoom-in"}`}
                 />
-                <img
-                  src={LOGO_ICON_URL}
-                  alt=""
-                  aria-hidden="true"
-                  className="absolute top-4 right-4 w-24 h-24 object-contain opacity-95 pointer-events-none drop-shadow-2xl"
-                />
+                <div className="absolute top-4 right-4 pointer-events-none drop-shadow-2xl">
+                  <WatermarkLogo size={88} className="opacity-95" />
+                </div>
               </div>
               <div className="mt-4 flex items-center justify-between text-white">
                 <div>
