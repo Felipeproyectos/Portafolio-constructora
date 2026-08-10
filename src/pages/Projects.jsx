@@ -41,7 +41,7 @@ export default function Projects() {
             transition={{ delay: 0.3 }}
             className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold tracking-tight max-w-4xl"
           >
-            De cero a obra terminada.
+            Construcción y remodelación con sello propio
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
