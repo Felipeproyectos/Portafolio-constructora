@@ -12,7 +12,17 @@ export default function Projects() {
     async function load() {
       try {
         const data = await base44.entities.Project.filter({ is_published: true }, "-year", 200);
-        setProjects(data);
+        // Fetch general photos to show finished work in the collage
+        const photos = await base44.entities.ProjectPhoto.filter({ type: "general" }, null, 500);
+        const photoMap = {};
+        photos.forEach((p) => {
+          if (!photoMap[p.project_id]) photoMap[p.project_id] = p.url;
+        });
+        const enriched = data.map((p) => ({
+          ...p,
+          displayImage: photoMap[p.id] || p.cover_image,
+        }));
+        setProjects(enriched);
       } catch (e) {
         console.error(e);
       } finally {
@@ -23,39 +33,47 @@ export default function Projects() {
   }, []);
 
   return (
-    <div className="pt-20">
-      {/* HEADER + COLLAGE */}
-      <section className="py-16 lg:py-24 border-b border-border">
+    <div>
+      {/* HEADER + COLLAGE — Dark theme */}
+      <section className="bg-[#1a1a1a] pt-32 pb-20 lg:pt-40 lg:pb-28">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-          <motion.div initial={{ width: 0 }} animate={{ width: 64 }} transition={{ duration: 0.6 }} className="h-px bg-primary mb-8" />
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-            <div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+            <div className="lg:col-span-5">
+              <motion.div
+                initial={{ width: 0 }}
+                animate={{ width: 48 }}
+                transition={{ duration: 0.6 }}
+                className="h-px bg-[#F5B01D] mb-8"
+              />
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="font-mono text-xs tracking-[0.2em] uppercase text-primary mb-4"
+                className="font-mono text-xs tracking-[0.2em] uppercase text-[#F5B01D] mb-6"
               >
-                Portafolio de Obras
+                — Portafolio de Obras
               </motion.p>
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold tracking-tight"
+                className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold tracking-tight text-white leading-[1.05]"
               >
-                Construcción y remodelación con sello propio
+                Construcción y remodelación{" "}
+                <span className="italic font-serif">con sello propio.</span>
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="mt-6 text-lg text-muted-foreground max-w-xl"
+                className="mt-8 text-base md:text-lg text-white/60 max-w-md leading-relaxed"
               >
-                Explore el catálogo completo de nuestros proyectos. Cada obra cuenta una historia de transformación.
+                Explore el catálogo completo de nuestros proyectos. Cada obra cuenta una historia de transformación, desde el primer trazo hasta la entrega final.
               </motion.p>
             </div>
-            <ProjectCollage projects={projects} loading={loading} />
+            <div className="lg:col-span-7">
+              <ProjectCollage projects={projects} loading={loading} />
+            </div>
           </div>
         </div>
       </section>
