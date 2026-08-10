@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { base44 } from "@/api/base44Client";
 import { Image } from "@/components/ui/image";
-import { FileText, Video, ArrowLeft, Download } from "lucide-react";
+import { FileText, ArrowLeft, Download } from "lucide-react";
 import { getProjectTypeLabel, dedupePhotosByOriginalFilename } from "@/lib/projectUtils";
 import CarouselGallery from "@/components/shared/CarouselGallery";
 import Lightbox from "@/components/shared/Lightbox";
