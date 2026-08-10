@@ -59,3 +59,44 @@ export function dedupePhotosByOriginalFilename(photos) {
     return true;
   });
 }
+
+// Las descripciones se escriben como texto tipo WhatsApp: párrafos separados
+// por líneas en blanco, con una lista "- Punto: detalle" en el medio. Esto
+// separa esos bloques para poder renderizar la lista como tal en vez de un
+// bloque de texto plano.
+const BULLET_RE = /^[-–—•]\s+/;
+
+export function parseDescription(text) {
+  const blocks = (text || "").split(/\n\s*\n/).map((b) => b.trim()).filter(Boolean);
+  const intro = [];
+  const outro = [];
+  const items = [];
+  let listTitle = null;
+  let seenList = false;
+
+  for (const block of blocks) {
+    const lines = block.split("\n").map((l) => l.trim()).filter(Boolean);
+    const isListBlock = lines.some((l) => BULLET_RE.test(l));
+    if (isListBlock) {
+      seenList = true;
+      for (const line of lines) {
+        if (BULLET_RE.test(line)) {
+          const rest = line.replace(BULLET_RE, "").trim();
+          const colon = rest.indexOf(":");
+          items.push(
+            colon > -1 && colon < 60
+              ? { label: rest.slice(0, colon).trim(), text: rest.slice(colon + 1).trim() }
+              : { label: null, text: rest }
+          );
+        } else {
+          listTitle = line.replace(/:$/, "").trim();
+        }
+      }
+    } else if (!seenList) {
+      intro.push(block);
+    } else {
+      outro.push(block);
+    }
+  }
+  return { intro, listTitle, items, outro };
+}
