@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Image } from "@/components/ui/image";
-import WatermarkLogo from "@/components/shared/WatermarkLogo";
 
 export default function ProjectCollage({ projects, loading }) {
   if (loading || !projects || projects.length === 0) {
@@ -49,10 +48,6 @@ export default function ProjectCollage({ projects, loading }) {
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/30 opacity-80 group-hover:opacity-90 transition-opacity" />
-
-            <div className="absolute top-2 right-2 z-10">
-              <WatermarkLogo width={36} className="opacity-90" />
-            </div>
 
             <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 text-white z-10">
               {project.location && (
