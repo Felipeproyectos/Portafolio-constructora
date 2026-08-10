@@ -10,7 +10,7 @@ import ProjectCard from "@/components/shared/ProjectCard";
 
 const ICON_MAP = { building: Building2, calendar: Calendar, ruler: Ruler, users: Users, award: Award, hardhat: HardHat, briefcase: Briefcase };
 
-const HERO_IMAGE = "https://images.unsplash.com/photo-1503387762-592deb58ef4?w=1920&q=85";
+const HERO_IMAGE = "https://base44.app/api/apps/6a7a0d673c6e832f34f21db3/files/mp/public/6a7a0d673c6e832f34f21db3/678c50aee_IMG-20221011-WA0008.jpg";
 const LOGO_URL = "https://media.base44.com/images/public/6a7a0d673c6e832f34f21db3/a33f0ae2c_WhatsAppImage2026-08-06at93236AM.jpg";
 
 export default function Home() {
@@ -110,13 +110,9 @@ export default function Home() {
       </section>
 
       {/* STATS */}
-      <section className="py-24 lg:py-32 border-b border-border">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-          {loading ? (
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-12">
-              {[...Array(4)].map((_, i) => <div key={i} className="h-24 bg-muted animate-pulse" />)}
-            </div>
-          ) : stats.length > 0 ? (
+      {stats.length > 0 && (
+        <section className="py-24 lg:py-32 border-b border-border">
+          <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
               {stats.map((stat) => {
                 const Icon = ICON_MAP[stat.icon?.toLowerCase()] || Building2;
@@ -127,22 +123,9 @@ export default function Home() {
                 );
               })}
             </div>
-          ) : (
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
-              {[
-                { value: "120", label: "Proyectos ejecutados", icon: Building2 },
-                { value: "25", label: "Años de experiencia", icon: Calendar },
-                { value: "480", label: "miles de m² construidos", icon: Ruler },
-                { value: "80", label: "Profesionales", icon: Users },
-              ].map((stat, i) => (
-                <div key={i} className="border-l-2 border-border pl-6">
-                  <StatCounter value={stat.value} label={stat.label} suffix={i === 2 ? "K" : "+"} icon={stat.icon} />
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      </section>
+          </div>
+        </section>
+      )}
 
       {/* FEATURED PROJECTS */}
       <section className="py-24 lg:py-32">
