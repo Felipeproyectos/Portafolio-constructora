@@ -65,8 +65,8 @@ export default function CarouselGallery({ photos, onImageClick }) {
             <Image
               src={photo.url}
               alt={photo.caption || ""}
-              fittingType="fill"
-              className="w-full h-full object-cover"
+              fittingType="fit"
+              className="w-full h-full object-contain"
             />
           </motion.div>
         </AnimatePresence>
