@@ -10,7 +10,8 @@ import ProjectCard from "@/components/shared/ProjectCard";
 
 const ICON_MAP = { building: Building2, calendar: Calendar, ruler: Ruler, users: Users, award: Award, hardhat: HardHat, briefcase: Briefcase };
 
-const HERO_IMAGE = "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=85";
+const HERO_IMAGE = "https://images.unsplash.com/photo-1503387762-592deb58ef4?w=1920&q=85";
+const LOGO_URL = "https://media.base44.com/images/public/6a7a0d673c6e832f34f21db3/a33f0ae2c_WhatsAppImage2026-08-06at93236AM.jpg";
 
 export default function Home() {
   const [featuredProjects, setFeaturedProjects] = useState([]);
@@ -51,11 +52,18 @@ export default function Home() {
 
         <motion.div style={{ opacity: heroOpacity }} className="relative z-10 h-full flex flex-col justify-center max-w-[1400px] mx-auto px-6 lg:px-10">
           <motion.div
-            initial={{ width: 0 }}
-            animate={{ width: 64 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="h-px bg-white mb-8"
-          />
+            className="mb-8"
+          >
+            <Image
+              src={LOGO_URL}
+              fittingType="fit"
+              alt="Constructora AvenZinc"
+              className="h-28 w-80 rounded-sm bg-white/95 p-3 shadow-2xl"
+            />
+          </motion.div>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -70,7 +78,7 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold tracking-tight text-white max-w-4xl leading-[0.95]"
           >
-            Construimos espacios que transforman comunidades.
+            Construimos espacios que transforman.
           </motion.h1>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
