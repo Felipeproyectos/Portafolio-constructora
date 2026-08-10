@@ -17,6 +17,7 @@ export default function ProjectDetail() {
   const [loading, setLoading] = useState(true);
   const [lightboxIndex, setLightboxIndex] = useState(null);
   const [lightboxPhotos, setLightboxPhotos] = useState(null);
+  const [showAllPhotos, setShowAllPhotos] = useState(false);
 
   useEffect(() => {
     async function loadData() {
@@ -61,6 +62,10 @@ export default function ProjectDetail() {
   }
 
   const generalPhotos = dedupePhotosByOriginalFilename(photos.filter((p) => p.type === "general" || !p.type));
+  // Fotos curadas (order < 500) se muestran primero; el resto queda detrás de "ver más".
+  const curatedPhotos = generalPhotos.filter((p) => (p.order ?? 0) < 500);
+  const hiddenPhotoCount = generalPhotos.length - curatedPhotos.length;
+  const displayPhotos = showAllPhotos || curatedPhotos.length === 0 ? generalPhotos : curatedPhotos;
 
   return (
     <div className="pt-20">
@@ -123,7 +128,15 @@ export default function ProjectDetail() {
               <div className="flex-1 h-px bg-border" />
             </div>
             <h2 className="text-3xl md:text-5xl font-heading font-bold mb-12 max-w-2xl">Galería fotográfica del proyecto</h2>
-            <CarouselGallery photos={generalPhotos} onImageClick={(i) => { setLightboxIndex(i); setLightboxPhotos(generalPhotos); }} />
+            <CarouselGallery photos={displayPhotos} onImageClick={(i) => { setLightboxIndex(i); setLightboxPhotos(displayPhotos); }} />
+            {!showAllPhotos && hiddenPhotoCount > 0 && (
+              <button
+                onClick={() => setShowAllPhotos(true)}
+                className="mt-8 font-mono text-xs tracking-[0.15em] uppercase text-primary hover:underline"
+              >
+                Ver las {hiddenPhotoCount} fotos restantes
+              </button>
+            )}
           </div>
         </section>
       )}
