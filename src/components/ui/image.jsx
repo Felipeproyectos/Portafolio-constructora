@@ -147,6 +147,7 @@ const Image = React.forwardRef(
     }
 
     const imageProps = {
+      loading: "lazy",
       ...props,
       onError: handleError,
     }
