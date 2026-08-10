@@ -1,30 +1,22 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { base44 } from "@/api/base44Client";
 import { Image } from "@/components/ui/image";
-import { Ruler, Clock, FileText, Video, ArrowLeft, Download, Eye } from "lucide-react";
+import { FileText, Video, ArrowLeft, Download } from "lucide-react";
 import { getProjectTypeLabel } from "@/lib/projectUtils";
-import MagazineGallery from "@/components/shared/MagazineGallery";
-import BeforeAfterSlider from "@/components/shared/BeforeAfterSlider";
+import CarouselGallery from "@/components/shared/CarouselGallery";
 import Lightbox from "@/components/shared/Lightbox";
 
 export default function ProjectDetail() {
   const { slug } = useParams();
   const [project, setProject] = useState(null);
-  const [stages, setStages] = useState([]);
   const [photos, setPhotos] = useState([]);
   const [documents, setDocuments] = useState([]);
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [lightboxIndex, setLightboxIndex] = useState(null);
   const [lightboxPhotos, setLightboxPhotos] = useState(null);
-  const [activeTab, setActiveTab] = useState("timeline");
-
-  const timelineRef = useRef(null);
-  const { scrollYProgress } = useScroll({ target: timelineRef, offset: ["start start", "end end"] });
-  const x = useTransform(scrollYProgress, [0, 1], ["2%", "-82%"]);
-  const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   useEffect(() => {
     async function loadData() {
@@ -34,13 +26,11 @@ export default function ProjectDetail() {
         const proj = projectData[0];
         setProject(proj);
 
-        const [stageData, photoData, docData, videoData] = await Promise.all([
-          base44.entities.ProjectStage.filter({ project_id: proj.id }, "order", 50),
+        const [photoData, docData, videoData] = await Promise.all([
           base44.entities.ProjectPhoto.filter({ project_id: proj.id }, "order", 200),
           base44.entities.ProjectDocument.filter({ project_id: proj.id }, "order", 50),
           base44.entities.ProjectVideo.filter({ project_id: proj.id }, "order", 50),
         ]);
-        setStages(stageData);
         setPhotos(photoData);
         setDocuments(docData);
         setVideos(videoData);
@@ -70,8 +60,6 @@ export default function ProjectDetail() {
     );
   }
 
-  const beforePhoto = photos.find((p) => p.type === "before");
-  const afterPhoto = photos.find((p) => p.type === "after");
   const generalPhotos = photos.filter((p) => p.type === "general" || !p.type);
 
   return (
@@ -117,117 +105,14 @@ export default function ProjectDetail() {
         </section>
       )}
 
-      {/* TABS */}
-      <section className="sticky top-20 z-30 bg-background/90 backdrop-blur-xl border-b border-border">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-          <div className="flex items-center gap-1 overflow-x-auto scrollbar-hide">
-            {[
-              { key: "timeline", label: "Línea de tiempo", icon: Clock },
-              { key: "gallery", label: "Galería", icon: Eye },
-              { key: "beforeafter", label: "Antes y Después", icon: Ruler },
-              ...(documents.length > 0 ? [{ key: "docs", label: "Documentación", icon: FileText }] : []),
-              ...(videos.length > 0 ? [{ key: "videos", label: "Videos", icon: Video }] : []),
-            ].map((tab) => (
-              <button
-                key={tab.key}
-                onClick={() => {
-                  setActiveTab(tab.key);
-                  document.getElementById(tab.key)?.scrollIntoView({ behavior: "smooth", block: "start" });
-                }}
-                className={`flex items-center gap-2 px-5 py-4 text-sm font-medium border-b-2 transition-all whitespace-nowrap ${
-                  activeTab === tab.key
-                    ? "border-primary text-foreground"
-                    : "border-transparent text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                <tab.icon size={16} />
-                {tab.label}
-              </button>
-            ))}
-          </div>
+      {/* TITLE */}
+      <section className="border-b border-border bg-background">
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-16 lg:py-24 text-center">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-heading font-bold tracking-tight max-w-4xl mx-auto leading-[1.05]">
+            Constructora AvenZinc<br className="hidden md:block" /> ayudando a construir tus sueños
+          </h2>
         </div>
       </section>
-
-      {/* TIMELINE (Horizontal Scrubbing) */}
-      {stages.length > 0 && (
-        <section id="timeline" ref={timelineRef} className="relative" style={{ height: `${stages.length * 80}vh` }}>
-          <div className="sticky top-0 h-screen flex items-center overflow-hidden">
-            <div className="absolute top-20 left-0 right-0 z-10 px-6 lg:px-10">
-              <div className="max-w-[1400px] mx-auto flex items-center justify-between">
-                <div>
-                  <p className="font-mono text-xs tracking-[0.2em] uppercase text-primary mb-2">Línea de tiempo</p>
-                  <h2 className="text-2xl md:text-3xl font-heading font-bold">De cero a obra terminada</h2>
-                </div>
-                <p className="hidden md:block font-mono text-xs text-muted-foreground">Scroll para recorrer →</p>
-              </div>
-            </div>
-
-            <motion.div style={{ x }} className="flex gap-6 lg:gap-10 pl-6 lg:pl-10">
-              {stages.map((stage, i) => {
-                const stagePhotos = photos.filter((p) => p.stage_id === stage.id);
-                return (
-                  <div key={stage.id} className="w-[85vw] md:w-[60vw] lg:w-[45vw] shrink-0">
-                    <div className="flex items-center gap-4 mb-6">
-                      <span className="font-mono text-5xl lg:text-6xl font-bold text-border">
-                        {String(stage.order).padStart(2, "0")}
-                      </span>
-                      <div>
-                        <h3 className="text-2xl lg:text-3xl font-heading font-bold">{stage.title}</h3>
-                        {stage.start_date && (
-                          <p className="font-mono text-xs text-muted-foreground mt-1">
-                            {stage.start_date} {stage.end_date ? `→ ${stage.end_date}` : ""}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                    {stage.description && (
-                      <p className="text-muted-foreground mb-6 max-w-md">{stage.description}</p>
-                    )}
-                    {stagePhotos.length > 0 ? (
-                      <div className="grid grid-cols-2 gap-4">
-                        {stagePhotos.slice(0, 4).map((photo, j) => (
-                          <div
-                            key={photo.id}
-                            onClick={() => {
-                              const allStagePhotos = stagePhotos;
-                              setLightboxIndex(j);
-                              setLightboxPhotos(allStagePhotos);
-                            }}
-                            className={`relative overflow-hidden bg-muted cursor-pointer group ${j === 0 ? "col-span-2 aspect-[16/10]" : "aspect-[4/3]"}`}
-                          >
-                            <Image src={photo.url} alt={photo.caption || ""} fittingType="fill" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                            {photo.caption && (
-                              <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-foreground/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                                <p className="text-xs text-white">{photo.caption}</p>
-                              </div>
-                            )}
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <div className="aspect-[16/10] bg-muted flex items-center justify-center">
-                        <span className="font-mono text-xs text-muted-foreground">Sin fotografías</span>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </motion.div>
-
-            <div className="absolute bottom-8 left-0 right-0 px-6 lg:px-10">
-              <div className="max-w-[1400px] mx-auto">
-                <div className="h-px bg-border relative">
-                  <motion.div style={{ width: progressWidth }} className="absolute top-0 left-0 h-px bg-primary" />
-                </div>
-                <div className="flex justify-between mt-2">
-                  <span className="font-mono text-[10px] text-muted-foreground">INICIO</span>
-                  <span className="font-mono text-[10px] text-muted-foreground">OBRA TERMINADA</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* GALLERY */}
       {generalPhotos.length > 0 && (
@@ -238,24 +123,7 @@ export default function ProjectDetail() {
               <div className="flex-1 h-px bg-border" />
             </div>
             <h2 className="text-3xl md:text-5xl font-heading font-bold mb-12 max-w-2xl">Galería fotográfica del proyecto</h2>
-            <MagazineGallery photos={generalPhotos} />
-          </div>
-        </section>
-      )}
-
-      {/* BEFORE / AFTER */}
-      {beforePhoto && afterPhoto && (
-        <section id="beforeafter" className="py-24 lg:py-32 bg-foreground text-background">
-          <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-            <div className="flex items-center gap-4 mb-12">
-              <span className="font-mono text-sm text-primary">Comparación</span>
-              <div className="flex-1 h-px bg-background/20" />
-            </div>
-            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-12 max-w-2xl">Antes y después</h2>
-            <p className="text-background/60 mb-10 max-w-xl">
-              Arrastre el control deslizante para comparar el terreno inicial con la obra terminada.
-            </p>
-            <BeforeAfterSlider beforeImage={beforePhoto.url} afterImage={afterPhoto.url} />
+            <CarouselGallery photos={generalPhotos} onImageClick={(i) => { setLightboxIndex(i); setLightboxPhotos(generalPhotos); }} />
           </div>
         </section>
       )}
