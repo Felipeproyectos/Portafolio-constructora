@@ -3,8 +3,8 @@ import { useParams, Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { base44 } from "@/api/base44Client";
 import { Image } from "@/components/ui/image";
-import { MapPin, Calendar, Building, Ruler, Clock, FileText, Video, ArrowLeft, Download, Play, Eye } from "lucide-react";
-import { getProjectTypeLabel, getProjectStatusLabel, formatSurface } from "@/lib/projectUtils";
+import { Ruler, Clock, FileText, Video, ArrowLeft, Download, Eye } from "lucide-react";
+import { getProjectTypeLabel } from "@/lib/projectUtils";
 import MasonryGallery from "@/components/shared/MasonryGallery";
 import BeforeAfterSlider from "@/components/shared/BeforeAfterSlider";
 import Lightbox from "@/components/shared/Lightbox";
@@ -106,24 +106,16 @@ export default function ProjectDetail() {
         </div>
       </section>
 
-      {/* INFO BAR */}
-      <section className="border-b border-border bg-background">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-12">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-            <InfoItem icon={MapPin} label="Ubicación" value={project.location} />
-            <InfoItem icon={Building} label="Mandante" value={project.client} />
-            <InfoItem icon={Calendar} label="Año" value={String(project.year)} />
-            <InfoItem icon={Ruler} label="Superficie" value={formatSurface(project.surface_area)} />
-            <InfoItem icon={Clock} label="Duración" value={project.duration} />
-            <InfoItem icon={Eye} label="Estado" value={getProjectStatusLabel(project.status)} highlight={project.status === "in_progress"} />
-          </div>
-          {project.description && (
-            <p className="mt-10 text-lg text-muted-foreground leading-relaxed max-w-3xl">
+      {/* DESCRIPTION */}
+      {project.description && (
+        <section className="border-b border-border bg-background">
+          <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-12">
+            <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl">
               {project.description}
             </p>
-          )}
-        </div>
-      </section>
+          </div>
+        </section>
+      )}
 
       {/* TABS */}
       <section className="sticky top-20 z-30 bg-background/90 backdrop-blur-xl border-b border-border">
@@ -341,18 +333,6 @@ export default function ProjectDetail() {
       {lightboxIndex !== null && lightboxPhotos && (
         <Lightbox images={lightboxPhotos} index={lightboxIndex} onClose={() => { setLightboxIndex(null); setLightboxPhotos(null); }} />
       )}
-    </div>
-  );
-}
-
-function InfoItem({ icon: Icon, label, value, highlight }) {
-  return (
-    <div>
-      <div className="flex items-center gap-2 mb-2">
-        <Icon size={14} className="text-muted-foreground" />
-        <span className="font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground">{label}</span>
-      </div>
-      <p className={`text-base font-medium ${highlight ? "text-primary" : "text-foreground"}`}>{value || "—"}</p>
     </div>
   );
 }
