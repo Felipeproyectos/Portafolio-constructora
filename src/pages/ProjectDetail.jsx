@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { base44 } from "@/api/base44Client";
 import { Image } from "@/components/ui/image";
 import { FileText, Video, ArrowLeft, Download } from "lucide-react";
-import { getProjectTypeLabel } from "@/lib/projectUtils";
+import { getProjectTypeLabel, dedupePhotosByOriginalFilename } from "@/lib/projectUtils";
 import CarouselGallery from "@/components/shared/CarouselGallery";
 import Lightbox from "@/components/shared/Lightbox";
 
@@ -60,7 +60,7 @@ export default function ProjectDetail() {
     );
   }
 
-  const generalPhotos = photos.filter((p) => p.type === "general" || !p.type);
+  const generalPhotos = dedupePhotosByOriginalFilename(photos.filter((p) => p.type === "general" || !p.type));
 
   return (
     <div className="pt-20">
