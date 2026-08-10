@@ -3,8 +3,8 @@ import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { base44 } from "@/api/base44Client";
 import { Image } from "@/components/ui/image";
-import { FileText, ArrowLeft, Download } from "lucide-react";
-import { getProjectTypeLabel, dedupePhotosByOriginalFilename } from "@/lib/projectUtils";
+import { FileText, ArrowLeft, Download, Check } from "lucide-react";
+import { getProjectTypeLabel, dedupePhotosByOriginalFilename, parseDescription } from "@/lib/projectUtils";
 import CarouselGallery from "@/components/shared/CarouselGallery";
 import Lightbox from "@/components/shared/Lightbox";
 
@@ -100,15 +100,45 @@ export default function ProjectDetail() {
       </section>
 
       {/* DESCRIPTION */}
-      {project.description && (
-        <section className="border-b border-border bg-background">
-          <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-12">
-            <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl">
-              {project.description}
-            </p>
-          </div>
-        </section>
-      )}
+      {project.description && (() => {
+        const desc = parseDescription(project.description);
+        const hasList = desc.items.length > 0;
+        return (
+          <section className="border-b border-border bg-background">
+            <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-16 lg:py-20">
+              <div className={hasList ? "grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16" : ""}>
+                <div className={hasList ? "lg:col-span-6" : "max-w-3xl"}>
+                  {[...desc.intro, ...desc.outro].map((p, i) => (
+                    <p key={i} className="text-lg text-muted-foreground leading-relaxed mb-4 last:mb-0">
+                      {p}
+                    </p>
+                  ))}
+                </div>
+                {hasList && (
+                  <div className="lg:col-span-6">
+                    {desc.listTitle && (
+                      <h3 className="font-mono text-xs tracking-[0.2em] uppercase text-primary mb-6">
+                        {desc.listTitle}
+                      </h3>
+                    )}
+                    <ul className="space-y-4">
+                      {desc.items.map((item, i) => (
+                        <li key={i} className="flex gap-3">
+                          <Check size={18} className="text-primary shrink-0 mt-1" />
+                          <p className="text-muted-foreground leading-relaxed">
+                            {item.label && <span className="font-semibold text-foreground">{item.label}: </span>}
+                            {item.text}
+                          </p>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            </div>
+          </section>
+        );
+      })()}
 
       {/* TITLE */}
       <section className="border-b border-border bg-background">
