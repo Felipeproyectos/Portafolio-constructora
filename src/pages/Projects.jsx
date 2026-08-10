@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { base44 } from "@/api/base44Client";
 import ProjectCard from "@/components/shared/ProjectCard";
+import ProjectCollage from "@/components/shared/ProjectCollage";
 
 export default function Projects() {
   const [projects, setProjects] = useState([]);
@@ -23,34 +24,39 @@ export default function Projects() {
 
   return (
     <div className="pt-20">
-      {/* HEADER */}
-      <section className="py-20 lg:py-28 border-b border-border">
+      {/* HEADER + COLLAGE */}
+      <section className="py-16 lg:py-24 border-b border-border">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
           <motion.div initial={{ width: 0 }} animate={{ width: 64 }} transition={{ duration: 0.6 }} className="h-px bg-primary mb-8" />
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="font-mono text-xs tracking-[0.2em] uppercase text-primary mb-4"
-          >
-            Portafolio de Obras
-          </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold tracking-tight max-w-4xl"
-          >
-            Construcción y remodelación con sello propio
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="mt-6 text-lg text-muted-foreground max-w-2xl"
-          >
-            Explore el catálogo completo de nuestros proyectos. Cada obra cuenta una historia de transformación.
-          </motion.p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+            <div>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="font-mono text-xs tracking-[0.2em] uppercase text-primary mb-4"
+              >
+                Portafolio de Obras
+              </motion.p>
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold tracking-tight"
+              >
+                Construcción y remodelación con sello propio
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="mt-6 text-lg text-muted-foreground max-w-xl"
+              >
+                Explore el catálogo completo de nuestros proyectos. Cada obra cuenta una historia de transformación.
+              </motion.p>
+            </div>
+            <ProjectCollage projects={projects} loading={loading} />
+          </div>
         </div>
       </section>
 
