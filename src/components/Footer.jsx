@@ -11,9 +11,8 @@ export default function Footer() {
   useEffect(() => {
     async function track() {
       try {
-        await base44.entities.SiteVisit.create({ page: window.location.pathname });
-        const visits = await base44.entities.SiteVisit.list("-created_date", 10000);
-        setVisitCount(visits.length);
+        const res = await base44.functions.invoke("trackVisit", {});
+        setVisitCount(res.data.visits);
       } catch (e) {
         // silently fail — counter is non-critical
       }
