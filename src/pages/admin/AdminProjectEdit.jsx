@@ -8,6 +8,7 @@ import StagesTab from "@/components/admin/tabs/StagesTab";
 import PhotosTab from "@/components/admin/tabs/PhotosTab";
 import DocumentsTab from "@/components/admin/tabs/DocumentsTab";
 import VideosTab from "@/components/admin/tabs/VideosTab";
+import DriveSyncTab from "@/components/admin/tabs/DriveSyncTab";
 
 const TABS = [
   { key: "info", label: "Información" },
@@ -15,6 +16,7 @@ const TABS = [
   { key: "fotos", label: "Fotografías" },
   { key: "docs", label: "Documentos" },
   { key: "videos", label: "Videos" },
+  { key: "drive", label: "Google Drive" },
 ];
 
 export default function AdminProjectEdit() {
@@ -175,6 +177,9 @@ export default function AdminProjectEdit() {
       )}
       {activeTab === "videos" && projectId && (
         <VideosTab projectId={projectId} />
+      )}
+      {activeTab === "drive" && projectId && (
+        <DriveSyncTab projectId={projectId} project={project} setProject={setProject} stages={stages} />
       )}
     </div>
   );
