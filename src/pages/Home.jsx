@@ -88,7 +88,7 @@ export default function Home() {
           >
             <span className="w-8 h-px bg-primary" />
             <span className="font-mono text-xs tracking-[0.25em] uppercase text-primary">
-              Portafolio de obras
+              Constructora AvenZinc
             </span>
           </motion.div>
           <motion.h1
@@ -97,7 +97,7 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.45 }}
             className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold tracking-tight text-white max-w-4xl leading-[0.95]"
           >
-            Construcción y remodelación <span className="italic font-normal text-white/85">con sello propio.</span>
+            Construimos espacios que <span className="italic font-normal text-white/85">transforman.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -105,7 +105,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.65 }}
             className="mt-8 max-w-xl text-base md:text-lg text-white/75 leading-relaxed"
           >
-            Explore el catálogo completo de nuestros proyectos. Cada obra cuenta una historia de transformación, desde el primer trazo hasta la entrega final.
+            Más de dos décadas construyendo viviendas, cabañas y obras a medida en la región de Los Ríos. Explore el portafolio completo de proyectos entregados.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
