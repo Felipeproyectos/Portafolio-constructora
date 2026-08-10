@@ -75,17 +75,15 @@ export default function Home() {
           </motion.div>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-white/50"
+        <Link
+          to="/proyectos"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-white/50 hover:text-white transition-colors"
         >
           <span className="font-mono text-[10px] tracking-[0.2em] uppercase">Scroll</span>
           <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}>
             <ArrowDown size={16} />
           </motion.div>
-        </motion.div>
+        </Link>
       </section>
 
       {/* FEATURED PROJECTS */}
@@ -116,11 +114,7 @@ export default function Home() {
                 <ProjectCard key={project.id} project={project} index={i} />
               ))}
             </div>
-          ) : (
-            <div className="text-center py-20 text-muted-foreground">
-              <p className="font-mono text-sm">Próximamente: proyectos siendo cargados.</p>
-            </div>
-          )}
+          ) : null}
         </div>
       </section>
 
