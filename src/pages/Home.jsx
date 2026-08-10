@@ -85,12 +85,6 @@ export default function Home() {
               <span>Ver nuestros proyectos</span>
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </Link>
-            <Link
-              to="/contacto"
-              className="inline-flex items-center gap-3 px-8 py-4 border border-white/30 text-white font-medium hover:bg-white/10 transition-all duration-300"
-            >
-              <span>Contáctenos</span>
-            </Link>
           </motion.div>
         </motion.div>
 
@@ -178,45 +172,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-24 lg:py-32">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-          <div className="border border-border p-12 lg:p-20 text-center">
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              className="font-mono text-xs tracking-[0.2em] uppercase text-primary mb-6"
-            >
-              Hablemos de su proyecto
-            </motion.p>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-3xl md:text-5xl font-heading font-bold tracking-tight max-w-3xl mx-auto text-balance"
-            >
-              Su próximo proyecto merece la experiencia que lo respalde.
-            </motion.h2>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="mt-10"
-            >
-              <Link
-                to="/contacto"
-                className="group inline-flex items-center gap-3 px-8 py-4 bg-foreground text-background font-medium hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-              >
-                <span>Contáctenos</span>
-                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </motion.div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

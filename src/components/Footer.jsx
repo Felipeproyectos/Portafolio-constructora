@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { MapPin, Mail, Instagram, Linkedin, Facebook, ArrowUpRight, FileText } from "lucide-react";
+import { MapPin, ArrowUpRight, FileText } from "lucide-react";
 import { Image } from "@/components/ui/image";
 
 const LOGO_URL = "https://media.base44.com/images/public/6a7a0d673c6e832f34f21db3/a33f0ae2c_WhatsAppImage2026-08-06at93236AM.jpg";
@@ -29,7 +29,6 @@ export default function Footer() {
             <ul className="space-y-3">
               {[
                 { label: "Proyectos", path: "/proyectos" },
-                { label: "Contacto", path: "/contacto" },
               ].map((link) => (
                 <li key={link.path}>
                   <Link
@@ -46,7 +45,7 @@ export default function Footer() {
 
           <div className="md:col-span-4">
             <h4 className="font-mono text-xs tracking-[0.2em] uppercase text-background/50 mb-5">
-              Contacto
+              Empresa
             </h4>
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-3 text-background/80">
@@ -57,24 +56,7 @@ export default function Footer() {
                 <FileText size={16} className="shrink-0 text-background/50" />
                 <span>RUT 77887899-2</span>
               </li>
-              <li className="flex items-center gap-3 text-background/80">
-                <Mail size={16} className="shrink-0 text-background/50" />
-                <a href="mailto:contacto@avenzinc.cl" className="hover:text-background transition-colors">
-                  contacto@avenzinc.cl
-                </a>
-              </li>
             </ul>
-            <div className="flex items-center gap-4 mt-6">
-              {[Instagram, Linkedin, Facebook].map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="w-10 h-10 border border-background/20 flex items-center justify-center hover:bg-background hover:text-foreground transition-all duration-300"
-                >
-                  <Icon size={16} />
-                </a>
-              ))}
-            </div>
           </div>
         </div>
 

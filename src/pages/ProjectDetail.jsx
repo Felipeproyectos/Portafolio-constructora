@@ -338,24 +338,6 @@ export default function ProjectDetail() {
         </section>
       )}
 
-      {/* CTA */}
-      <section className="py-24 lg:py-32 border-t border-border">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-10 text-center">
-          <h2 className="text-3xl md:text-5xl font-heading font-bold max-w-2xl mx-auto text-balance">
-            ¿Le gustaría un proyecto como este?
-          </h2>
-          <p className="mt-4 text-muted-foreground max-w-xl mx-auto">
-            Conversemos sobre cómo podemos construir su próxima obra.
-          </p>
-          <Link
-            to="/contacto"
-            className="mt-8 inline-flex items-center gap-2 px-8 py-4 bg-foreground text-background font-medium hover:bg-primary hover:text-primary-foreground transition-all"
-          >
-            Contáctenos
-          </Link>
-        </div>
-      </section>
-
       {lightboxIndex !== null && lightboxPhotos && (
         <Lightbox images={lightboxPhotos} index={lightboxIndex} onClose={() => { setLightboxIndex(null); setLightboxPhotos(null); }} />
       )}
