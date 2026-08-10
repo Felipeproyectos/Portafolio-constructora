@@ -52,7 +52,11 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="font-mono text-xs tracking-[0.3em] uppercase text-white/70 mb-6"
+            className="font-mono text-sm md:text-base tracking-[0.3em] uppercase text-white mb-6"
+            style={{
+              WebkitTextStroke: "1px #F5B01D",
+              textShadow: "0 0 2px #F5B01D, 0 2px 20px rgba(0,0,0,0.9)"
+            }}
           >
             Constructora AvenZinc · Portafolio Digital
           </motion.p>
@@ -60,11 +64,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="text-6xl md:text-8xl lg:text-9xl font-heading font-bold tracking-tight text-white max-w-4xl leading-[0.95]"
-            style={{
-              WebkitTextStroke: "2px #F5B01D",
-              textShadow: "0 0 1px #F5B01D, 0 2px 30px rgba(0,0,0,0.8)"
-            }}
+            className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold tracking-tight text-white max-w-4xl leading-[0.95]"
           >
             Construimos espacios que transforman.
           </motion.h1>
