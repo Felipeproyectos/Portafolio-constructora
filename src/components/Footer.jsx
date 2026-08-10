@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { MapPin, ArrowUpRight, FileText } from "lucide-react";
 import { Image } from "@/components/ui/image";
 
-const LOGO_URL = "https://media.base44.com/images/public/6a7a0d673c6e832f34f21db3/a33f0ae2c_WhatsAppImage2026-08-06at93236AM.jpg";
+const LOGO_URL = "https://media.base44.com/images/public/6a7a0d673c6e832f34f21db3/ba9546240_ChatGPTImage10ago202616_01_24.png";
 
 export default function Footer() {
   return (
