@@ -1,9 +1,26 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { MapPin, ArrowUpRight, FileText } from "lucide-react";
+import { MapPin, ArrowUpRight, FileText, Eye } from "lucide-react";
+import { base44 } from "@/api/base44Client";
 
 const LOGO_URL = "https://media.base44.com/images/public/6a7a0d673c6e832f34f21db3/ba9546240_ChatGPTImage10ago202616_01_24.png";
 
 export default function Footer() {
+  const [visitCount, setVisitCount] = useState(null);
+
+  useEffect(() => {
+    async function track() {
+      try {
+        await base44.entities.SiteVisit.create({ page: window.location.pathname });
+        const visits = await base44.entities.SiteVisit.list("-created_date", 10000);
+        setVisitCount(visits.length);
+      } catch (e) {
+        // silently fail — counter is non-critical
+      }
+    }
+    track();
+  }, []);
+
   return (
     <footer className="bg-foreground text-background">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-20">
@@ -64,9 +81,17 @@ export default function Footer() {
           <p className="font-mono text-xs text-background/40 tracking-wider">
             © {new Date().getFullYear()} Constructora AvenZinc Limitada · RUT 77887899-2
           </p>
-          <p className="font-mono text-xs text-background/40 tracking-wider">
-            Panguipulli, Chile
-          </p>
+          <div className="flex items-center gap-6">
+            {visitCount !== null && (
+              <p className="font-mono text-xs text-background/40 tracking-wider inline-flex items-center gap-1.5">
+                <Eye size={12} />
+                {visitCount.toLocaleString("es-CL")} visitas
+              </p>
+            )}
+            <p className="font-mono text-xs text-background/40 tracking-wider">
+              Panguipulli, Chile
+            </p>
+          </div>
         </div>
       </div>
     </footer>

@@ -1,0 +1,25 @@
+{
+  "name": "SiteVisit",
+  "type": "object",
+  "properties": {
+    "page": {
+      "type": "string",
+      "title": "P\u00e1gina Visitada"
+    }
+  },
+  "required": [],
+  "rls": {
+    "create": {},
+    "read": {},
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
