@@ -5,7 +5,7 @@ import { base44 } from "@/api/base44Client";
 import { Image } from "@/components/ui/image";
 import { Ruler, Clock, FileText, Video, ArrowLeft, Download, Eye } from "lucide-react";
 import { getProjectTypeLabel } from "@/lib/projectUtils";
-import MasonryGallery from "@/components/shared/MasonryGallery";
+import MagazineGallery from "@/components/shared/MagazineGallery";
 import BeforeAfterSlider from "@/components/shared/BeforeAfterSlider";
 import Lightbox from "@/components/shared/Lightbox";
 
@@ -231,14 +231,14 @@ export default function ProjectDetail() {
 
       {/* GALLERY */}
       {generalPhotos.length > 0 && (
-        <section id="gallery" className="py-24 lg:py-32">
+        <section id="gallery" className="py-24 lg:py-32 bg-muted/30">
           <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
             <div className="flex items-center gap-4 mb-12">
               <span className="font-mono text-sm text-primary">Galería</span>
               <div className="flex-1 h-px bg-border" />
             </div>
             <h2 className="text-3xl md:text-5xl font-heading font-bold mb-12 max-w-2xl">Galería fotográfica del proyecto</h2>
-            <MasonryGallery photos={generalPhotos} groupByStage={false} />
+            <MagazineGallery photos={generalPhotos} />
           </div>
         </section>
       )}
