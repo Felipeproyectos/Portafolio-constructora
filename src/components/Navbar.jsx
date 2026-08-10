@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Image } from "@/components/ui/image";
 
-const LOGO_URL = "https://media.base44.com/images/public/6a7a0d673c6e832f34f21db3/a33f0ae2c_WhatsAppImage2026-08-06at93236AM.jpg";
+const LOGO_URL = "https://media.base44.com/images/public/6a7a0d673c6e832f34f21db3/ba9546240_ChatGPTImage10ago202616_01_24.png";
 
 const NAV_LINKS = [
   { label: "Inicio", path: "/" },
@@ -41,12 +41,10 @@ export default function Navbar() {
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
           <div className="flex items-center justify-between h-20">
             <Link to="/" className="group flex items-center">
-              <Image
+              <img
                 src={LOGO_URL}
-                fittingType="fit"
                 alt="Constructora AvenZinc"
-                className="h-20 w-64 rounded-sm"
-                style={{ mixBlendMode: "multiply" }}
+                className="h-16 w-auto object-contain"
               />
             </Link>
 
