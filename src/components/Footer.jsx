@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { MapPin, ArrowUpRight, FileText } from "lucide-react";
-import { Image } from "@/components/ui/image";
 
 const LOGO_URL = "https://media.base44.com/images/public/6a7a0d673c6e832f34f21db3/ba9546240_ChatGPTImage10ago202616_01_24.png";
 
@@ -10,12 +9,13 @@ export default function Footer() {
       <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-20">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
           <div className="md:col-span-5">
-            <Image
-              src={LOGO_URL}
-              fittingType="fit"
-              alt="Constructora AvenZinc"
-              className="h-16 w-44 bg-white/95 px-2 py-1 rounded-sm mb-4"
-            />
+            <div className="inline-block bg-white/95 rounded-sm px-3 py-2 mb-4">
+              <img
+                src={LOGO_URL}
+                alt="Constructora AvenZinc"
+                className="h-14 w-auto object-contain"
+              />
+            </div>
             <p className="text-background/70 text-sm leading-relaxed max-w-md">
               Constructora AvenZinc Limitada. De cero a obra terminada,
               cada proyecto cuenta una historia de precisión, calidad y experiencia técnica.
