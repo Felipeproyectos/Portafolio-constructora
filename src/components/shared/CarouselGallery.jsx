@@ -76,7 +76,7 @@ export default function CarouselGallery({ photos, onImageClick }) {
           src={LOGO_ICON_URL}
           alt=""
           aria-hidden="true"
-          className="absolute top-4 right-4 w-12 h-12 object-contain opacity-40 pointer-events-none drop-shadow-lg z-10"
+          className="absolute top-4 right-4 w-16 h-16 object-contain opacity-70 pointer-events-none drop-shadow-xl z-10"
         />
 
         {photo.caption && (

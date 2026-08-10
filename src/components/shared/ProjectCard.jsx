@@ -38,7 +38,7 @@ export default function ProjectCard({ project, index = 0 }) {
             src={LOGO_ICON_URL}
             alt=""
             aria-hidden="true"
-            className="absolute top-4 right-4 w-10 h-10 object-contain opacity-50 group-hover:opacity-80 transition-opacity duration-500 drop-shadow-lg"
+            className="absolute top-4 right-4 w-14 h-14 object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-500 drop-shadow-xl"
           />
 
           <div className="absolute top-4 left-4 flex items-center gap-2">

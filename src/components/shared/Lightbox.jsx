@@ -89,7 +89,7 @@ export default function Lightbox({ images, index, onClose }) {
                   src={LOGO_ICON_URL}
                   alt=""
                   aria-hidden="true"
-                  className="absolute top-4 right-4 w-14 h-14 object-contain opacity-30 pointer-events-none drop-shadow-lg"
+                  className="absolute top-4 right-4 w-20 h-20 object-contain opacity-60 pointer-events-none drop-shadow-xl"
                 />
               </div>
               <div className="mt-4 flex items-center justify-between text-white">
