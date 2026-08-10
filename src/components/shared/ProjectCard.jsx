@@ -4,6 +4,8 @@ import { ArrowRight, MapPin } from "lucide-react";
 import { Image } from "@/components/ui/image";
 import { getProjectTypeLabel, getProjectStatusLabel } from "@/lib/projectUtils";
 
+const LOGO_ICON_URL = "https://media.base44.com/images/public/6a7a0d673c6e832f34f21db3/bbfcfdf4e_generated_image.png";
+
 export default function ProjectCard({ project, index = 0 }) {
   const aspectClass = index % 3 === 0 ? "aspect-[4/5]" : index % 3 === 1 ? "aspect-[4/3]" : "aspect-[1/1]";
 
@@ -31,6 +33,13 @@ export default function ProjectCard({ project, index = 0 }) {
           )}
 
           <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/0 to-foreground/0 opacity-60 group-hover:opacity-90 transition-opacity duration-500" />
+
+          <img
+            src={LOGO_ICON_URL}
+            alt=""
+            aria-hidden="true"
+            className="absolute top-4 right-4 w-10 h-10 object-contain opacity-50 group-hover:opacity-80 transition-opacity duration-500 drop-shadow-lg"
+          />
 
           <div className="absolute top-4 left-4 flex items-center gap-2">
             <span className={`px-3 py-1 text-[10px] font-mono tracking-[0.15em] uppercase ${
