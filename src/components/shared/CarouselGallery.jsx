@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Image } from "@/components/ui/image";
 
-const LOGO_ICON_URL = "https://media.base44.com/images/public/6a7a0d673c6e832f34f21db3/ee08afaa8_generated_image.png";
+const LOGO_ICON_URL = "https://media.base44.com/images/public/6a7a0d673c6e832f34f21db3/7fa83ac21_generated_image.png";
 
 export default function CarouselGallery({ photos, onImageClick }) {
   const [current, setCurrent] = useState(0);
@@ -76,7 +76,7 @@ export default function CarouselGallery({ photos, onImageClick }) {
           src={LOGO_ICON_URL}
           alt=""
           aria-hidden="true"
-          className="absolute top-4 right-4 w-16 h-16 object-contain opacity-90 pointer-events-none drop-shadow-xl z-10" style={{ mixBlendMode: "screen" }}
+          className="absolute top-4 right-4 w-20 h-20 object-contain opacity-95 pointer-events-none drop-shadow-2xl z-10"
         />
 
         {photo.caption && (
