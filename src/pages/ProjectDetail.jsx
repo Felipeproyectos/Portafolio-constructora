@@ -71,7 +71,7 @@ export default function ProjectDetail() {
     <div className="pt-20">
       {/* HERO */}
       <section className="relative h-[70vh] overflow-hidden">
-        <Image src={project.cover_image} alt={project.name} fittingType="fill" className="w-full h-full object-cover" />
+        <Image src={project.cover_image} alt={project.name} fittingType="fill" loading="eager" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/40 to-foreground/20" />
         <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-10">
           <div className="max-w-[1400px] mx-auto">

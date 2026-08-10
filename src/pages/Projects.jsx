@@ -23,17 +23,7 @@ export default function Projects() {
     async function load() {
       try {
         const data = await base44.entities.Project.filter({ is_published: true }, "-year", 200);
-        // Fetch general photos to show finished work in the collage
-        const photos = await base44.entities.ProjectPhoto.filter({ type: "general" }, null, 500);
-        const photoMap = {};
-        photos.forEach((p) => {
-          if (!photoMap[p.project_id]) photoMap[p.project_id] = p.url;
-        });
-        const enriched = data.map((p) => ({
-          ...p,
-          displayImage: photoMap[p.id] || p.cover_image,
-        }));
-        setProjects(enriched);
+        setProjects(data);
       } catch (e) {
         console.error(e);
       } finally {
@@ -43,7 +33,7 @@ export default function Projects() {
     load();
   }, []);
 
-  const collagePhotos = projects.slice(0, 7).map((p) => p.displayImage || p.cover_image).filter(Boolean);
+  const collagePhotos = projects.slice(0, 7).map((p) => p.cover_image).filter(Boolean);
 
   return (
     <div>
@@ -56,6 +46,7 @@ export default function Projects() {
                 src={src}
                 alt=""
                 fittingType="fill"
+                loading="eager"
                 className="w-full h-full object-cover grayscale-[35%] brightness-[0.62] contrast-[1.05]"
               />
             </div>

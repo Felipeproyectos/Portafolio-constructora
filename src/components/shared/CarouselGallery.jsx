@@ -108,17 +108,25 @@ export default function CarouselGallery({ photos, onImageClick }) {
         </div>
 
         <div className="flex gap-2 overflow-x-auto scrollbar-hide">
-          {photos.map((p, i) => (
-            <button
-              key={p.id || i}
-              onClick={() => { setDirection(i > current ? 1 : -1); setCurrent(i); }}
-              className={`relative shrink-0 w-20 h-14 overflow-hidden transition-all ${
-                i === current ? "ring-2 ring-primary" : "opacity-50 hover:opacity-100"
-              }`}
-            >
-              <Image src={p.url} alt="" fittingType="fill" className="w-full h-full object-cover" />
-            </button>
-          ))}
+          {photos.map((p, i) => {
+            // Only render thumbnails within a window of the current index;
+            // placeholder divs preserve scroll width for far-off thumbnails.
+            const inWindow = Math.abs(i - current) <= 12;
+            if (!inWindow) {
+              return <div key={p.id || i} className="shrink-0 w-20 h-14 bg-muted/40" />;
+            }
+            return (
+              <button
+                key={p.id || i}
+                onClick={() => { setDirection(i > current ? 1 : -1); setCurrent(i); }}
+                className={`relative shrink-0 w-20 h-14 overflow-hidden transition-all ${
+                  i === current ? "ring-2 ring-primary" : "opacity-50 hover:opacity-100"
+                }`}
+              >
+                <Image src={p.url} alt="" fittingType="fill" quality={70} className="w-full h-full object-cover" />
+              </button>
+            );
+          })}
         </div>
       </div>
     </div>

@@ -60,6 +60,7 @@ export default function Home() {
                 src={src}
                 alt=""
                 fittingType="fill"
+                loading="eager"
                 className="w-full h-full object-cover grayscale-[35%] brightness-[0.62] contrast-[1.05]"
               />
             </div>
