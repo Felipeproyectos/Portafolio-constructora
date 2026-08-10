@@ -6,10 +6,8 @@ import { base44 } from "@/api/base44Client";
 import { Image } from "@/components/ui/image";
 import SectionHeading from "@/components/shared/SectionHeading";
 import ProjectCard from "@/components/shared/ProjectCard";
-import WatermarkLogo from "@/components/shared/WatermarkLogo";
 
 const HERO_IMAGE = "https://base44.app/api/apps/6a7a0d673c6e832f34f21db3/files/mp/public/6a7a0d673c6e832f34f21db3/678c50aee_IMG-20221011-WA0008.jpg";
-const LOGO_URL = "https://media.base44.com/images/public/6a7a0d673c6e832f34f21db3/a33f0ae2c_WhatsAppImage2026-08-06at93236AM.jpg";
 
 // Asymmetric 4x3 collage grid — same pattern as ProjectCollage.jsx
 const COLLAGE_LAYOUT = [
@@ -74,10 +72,6 @@ export default function Home() {
               "linear-gradient(180deg, hsl(var(--foreground)/0.55) 0%, hsl(var(--foreground)/0.35) 35%, hsl(var(--foreground)/0.85) 100%), linear-gradient(90deg, hsl(var(--foreground)/0.5) 0%, transparent 40%, transparent 60%, hsl(var(--foreground)/0.5) 100%)",
           }}
         />
-
-        <div className="absolute top-24 right-8 lg:right-12 z-10 drop-shadow-2xl">
-          <WatermarkLogo width={140} className="opacity-90" />
-        </div>
 
         <motion.div style={{ opacity: heroOpacity }} className="relative z-10 h-full flex flex-col justify-center max-w-[1400px] mx-auto px-6 lg:px-10">
           <motion.div
