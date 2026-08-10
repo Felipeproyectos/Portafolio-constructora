@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut } from "lucide-react";
 import { Image } from "@/components/ui/image";
 
-const LOGO_ICON_URL = "https://media.base44.com/images/public/6a7a0d673c6e832f34f21db3/bbfcfdf4e_generated_image.png";
+const LOGO_ICON_URL = "https://media.base44.com/images/public/6a7a0d673c6e832f34f21db3/ee08afaa8_generated_image.png";
 
 export default function Lightbox({ images, index, onClose }) {
   const [currentIndex, setCurrentIndex] = useState(index);
@@ -89,7 +89,7 @@ export default function Lightbox({ images, index, onClose }) {
                   src={LOGO_ICON_URL}
                   alt=""
                   aria-hidden="true"
-                  className="absolute top-4 right-4 w-20 h-20 object-contain opacity-60 pointer-events-none drop-shadow-xl"
+                  className="absolute top-4 right-4 w-20 h-20 object-contain opacity-90 pointer-events-none drop-shadow-xl" style={{ mixBlendMode: "screen" }}
                 />
               </div>
               <div className="mt-4 flex items-center justify-between text-white">

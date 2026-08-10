@@ -4,7 +4,7 @@ import { ArrowRight, MapPin } from "lucide-react";
 import { Image } from "@/components/ui/image";
 import { getProjectTypeLabel, getProjectStatusLabel } from "@/lib/projectUtils";
 
-const LOGO_ICON_URL = "https://media.base44.com/images/public/6a7a0d673c6e832f34f21db3/bbfcfdf4e_generated_image.png";
+const LOGO_ICON_URL = "https://media.base44.com/images/public/6a7a0d673c6e832f34f21db3/ee08afaa8_generated_image.png";
 
 export default function ProjectCard({ project, index = 0 }) {
   const aspectClass = index % 3 === 0 ? "aspect-[4/5]" : index % 3 === 1 ? "aspect-[4/3]" : "aspect-[1/1]";
@@ -38,7 +38,7 @@ export default function ProjectCard({ project, index = 0 }) {
             src={LOGO_ICON_URL}
             alt=""
             aria-hidden="true"
-            className="absolute top-4 right-4 w-14 h-14 object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-500 drop-shadow-xl"
+            className="absolute top-4 right-4 w-14 h-14 object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-500 drop-shadow-xl" style={{ mixBlendMode: "screen" }}
           />
 
           <div className="absolute top-4 left-4 flex items-center gap-2">
