@@ -15,7 +15,6 @@ const HERO_IMAGE = "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab
 export default function Home() {
   const [featuredProjects, setFeaturedProjects] = useState([]);
   const [stats, setStats] = useState([]);
-  const [capabilities, setCapabilities] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const { scrollY } = useScroll();
@@ -26,14 +25,12 @@ export default function Home() {
   useEffect(() => {
     async function loadData() {
       try {
-        const [projects, statsData, caps] = await Promise.all([
+        const [projects, statsData] = await Promise.all([
           base44.entities.Project.filter({ is_featured: true, is_published: true }, "-year", 6),
           base44.entities.CompanyStat.list("order", 10),
-          base44.entities.Capability.list("order", 4),
         ]);
         setFeaturedProjects(projects);
         setStats(statsData);
-        setCapabilities(caps);
       } catch (e) {
         console.error(e);
       } finally {
@@ -65,7 +62,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="font-mono text-xs tracking-[0.3em] uppercase text-white/70 mb-6"
           >
-            Portafolio Digital · De cero a obra terminada
+            Constructora AvenZinc · Portafolio Digital
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
@@ -92,7 +89,7 @@ export default function Home() {
               to="/contacto"
               className="inline-flex items-center gap-3 px-8 py-4 border border-white/30 text-white font-medium hover:bg-white/10 transition-all duration-300"
             >
-              <span>Cotizar un proyecto</span>
+              <span>Contáctenos</span>
             </Link>
           </motion.div>
         </motion.div>
@@ -181,51 +178,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CAPABILITIES PREVIEW */}
-      <section className="py-24 lg:py-32 bg-foreground text-background">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-          <SectionHeading
-            eyebrow="Capacidades"
-            title="Servicios que cubren todo el ciclo de construcción"
-            description="Desde la primera excavación hasta la entrega final, ofrecemos capacidades técnicas integrales."
-            light
-          />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {(capabilities.length > 0 ? capabilities : [
-              { title: "Obras Civiles", description: "Infraestructura y obras de ingeniería de gran envergadura.", icon: "building" },
-              { title: "Edificación", description: "Construcción residencial, comercial e industrial.", icon: "hardhat" },
-              { title: "Remodelación", description: "Renovación y ampliación de espacios existentes.", icon: "ruler" },
-              { title: "Urbanización", description: "Espacios públicos, vialidad y áreas verdes.", icon: "briefcase" },
-            ]).map((cap, i) => {
-              const Icon = ICON_MAP[cap.icon?.toLowerCase()] || Building2;
-              return (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="group border-t border-background/20 pt-6"
-                >
-                  <Icon size={28} className="text-primary mb-4" />
-                  <h3 className="text-xl font-heading font-semibold mb-2">{cap.title}</h3>
-                  <p className="text-sm text-background/60 leading-relaxed">{cap.description}</p>
-                </motion.div>
-              );
-            })}
-          </div>
-          <div className="mt-12">
-            <Link
-              to="/capacidades"
-              className="group inline-flex items-center gap-2 text-sm font-medium text-background hover:text-primary transition-colors"
-            >
-              <span>Ver todas las capacidades</span>
-              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
       {/* CTA */}
       <section className="py-24 lg:py-32">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
@@ -258,7 +210,7 @@ export default function Home() {
                 to="/contacto"
                 className="group inline-flex items-center gap-3 px-8 py-4 bg-foreground text-background font-medium hover:bg-primary hover:text-primary-foreground transition-all duration-300"
               >
-                <span>Solicitar cotización</span>
+                <span>Contáctenos</span>
                 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
               </Link>
             </motion.div>

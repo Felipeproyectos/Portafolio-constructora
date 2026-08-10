@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { base44 } from "@/api/base44Client";
-import { MapPin, Phone, Mail, Send, CheckCircle, MessageCircle, Clock } from "lucide-react";
+import { MapPin, Mail, Send, CheckCircle, Clock, FileText } from "lucide-react";
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "", project_interest: "" });
@@ -23,8 +23,6 @@ export default function Contact() {
       setSubmitting(false);
     }
   };
-
-  const whatsappUrl = `https://wa.me/56912345678?text=${encodeURIComponent("Hola, me gustaría obtener información sobre sus proyectos.")}`;
 
   return (
     <div className="pt-20">
@@ -134,33 +132,23 @@ export default function Contact() {
                 <div>
                   <h3 className="font-mono text-xs tracking-[0.2em] uppercase text-muted-foreground mb-4">Información de contacto</h3>
                   <div className="space-y-4">
-                    <ContactRow icon={MapPin} label="Dirección" value="Av. Principal 1234, Ciudad" />
-                    <ContactRow icon={Phone} label="Teléfono" value="+56 9 1234 5678" href="tel:+56912345678" />
-                    <ContactRow icon={Mail} label="Correo" value="contacto@constructora.cl" href="mailto:contacto@constructora.cl" />
+                    <ContactRow icon={MapPin} label="Dirección" value="Ruta T-393 km 2, Panguipulli" />
+                    <ContactRow icon={FileText} label="RUT" value="77887899-2" />
+                    <ContactRow icon={Mail} label="Correo" value="contacto@avenzinc.cl" href="mailto:contacto@avenzinc.cl" />
                     <ContactRow icon={Clock} label="Horario" value="Lun – Vie · 9:00 a 18:00 hrs" />
                   </div>
                 </div>
 
-                <a
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center gap-4 p-6 border border-border hover:border-[#25D366] hover:bg-[#25D366]/5 transition-all"
-                >
-                  <div className="w-12 h-12 bg-[#25D366] rounded-full flex items-center justify-center">
-                    <MessageCircle size={22} className="text-white" />
-                  </div>
-                  <div>
-                    <h4 className="font-medium">WhatsApp directo</h4>
-                    <p className="text-sm text-muted-foreground">Converse con un asesor ahora</p>
-                  </div>
-                </a>
+                <div className="p-6 border border-border">
+                  <h4 className="font-medium">Constructora AvenZinc Limitada</h4>
+                  <p className="text-sm text-muted-foreground mt-1">RUT 77887899-2 · Panguipulli, Chile</p>
+                </div>
 
                 <div className="aspect-[4/3] border border-border overflow-hidden">
                   <iframe
-                    src="https://www.openstreetmap.org/export/embed.html?bbox=-70.65,-33.45,-70.55,-33.40&layer=mapnik"
+                    src="https://www.openstreetmap.org/export/embed.html?bbox=-72.38,-39.70,-72.28,-39.60&layer=mapnik"
                     className="w-full h-full"
-                    title="Mapa de ubicación"
+                    title="Panguipulli - Ubicación"
                     loading="lazy"
                   />
                 </div>

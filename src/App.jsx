@@ -10,9 +10,6 @@ import Layout from "@/components/Layout";
 import Home from "@/pages/Home";
 import Projects from "@/pages/Projects";
 import ProjectDetail from "@/pages/ProjectDetail";
-import About from "@/pages/About";
-import Capabilities from "@/pages/Capabilities";
-import Clients from "@/pages/Clients";
 import Contact from "@/pages/Contact";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import AdminLayout from "@/components/admin/AdminLayout";
@@ -51,9 +48,6 @@ const AuthenticatedApp = () => {
         <Route path="/" element={<Home />} />
         <Route path="/proyectos" element={<Projects />} />
         <Route path="/proyectos/:slug" element={<ProjectDetail />} />
-        <Route path="/historia" element={<About />} />
-        <Route path="/capacidades" element={<Capabilities />} />
-        <Route path="/clientes" element={<Clients />} />
         <Route path="/contacto" element={<Contact />} />
       </Route>
       <Route element={<ProtectedRoute unauthenticatedElement={<Navigate to="/login" replace />} />}>

@@ -2,13 +2,13 @@ import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { Image } from "@/components/ui/image";
+
+const LOGO_URL = "https://media.base44.com/images/public/6a7a0d673c6e832f34f21db3/a33f0ae2c_WhatsAppImage2026-08-06at93236AM.jpg";
 
 const NAV_LINKS = [
   { label: "Inicio", path: "/" },
   { label: "Proyectos", path: "/proyectos" },
-  { label: "Historia", path: "/historia" },
-  { label: "Capacidades", path: "/capacidades" },
-  { label: "Clientes", path: "/clientes" },
   { label: "Contacto", path: "/contacto" },
 ];
 
@@ -41,20 +41,13 @@ export default function Navbar() {
       >
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
           <div className="flex items-center justify-between h-20">
-            <Link to="/" className="group flex items-center gap-3">
-              <div className="relative">
-                <div className="w-10 h-10 border-2 border-foreground flex items-center justify-center">
-                  <div className="w-4 h-4 bg-foreground group-hover:bg-primary transition-colors duration-300" />
-                </div>
-              </div>
-              <div className="flex flex-col leading-none">
-                <span className={`font-heading font-bold text-lg tracking-tight ${isTransparent ? "text-white" : "text-foreground"}`}>
-                  CONSTRUCTORA
-                </span>
-                <span className={`font-mono text-[10px] tracking-[0.2em] uppercase ${isTransparent ? "text-white/70" : "text-muted-foreground"}`}>
-                  Portafolio Digital
-                </span>
-              </div>
+            <Link to="/" className="group flex items-center">
+              <Image
+                src={LOGO_URL}
+                fittingType="fit"
+                alt="Constructora AvenZinc"
+                className="h-11 w-32 rounded-sm"
+              />
             </Link>
 
             <nav className="hidden lg:flex items-center gap-1">
@@ -87,15 +80,7 @@ export default function Navbar() {
               })}
             </nav>
 
-            <div className="hidden lg:block">
-              <Link
-                to="/contacto"
-                className="group relative inline-flex items-center gap-2 px-5 py-2.5 bg-foreground text-background text-sm font-medium hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-              >
-                <span>Cotizar Proyecto</span>
-                <span className="w-1 h-1 bg-current rounded-full group-hover:w-4 transition-all duration-300" />
-              </Link>
-            </div>
+            <div className="hidden lg:block" />
 
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
@@ -137,9 +122,9 @@ export default function Navbar() {
               ))}
               <Link
                 to="/contacto"
-                className="mt-6 inline-flex items-center justify-center gap-2 px-6 py-4 bg-foreground text-background text-base font-medium"
+                className="mt-6 inline-flex items-center justify-center gap-2 px-6 py-4 border border-foreground text-foreground text-base font-medium"
               >
-                Cotizar Proyecto
+                Contáctenos
               </Link>
             </nav>
           </motion.div>

@@ -351,7 +351,7 @@ export default function ProjectDetail() {
             to="/contacto"
             className="mt-8 inline-flex items-center gap-2 px-8 py-4 bg-foreground text-background font-medium hover:bg-primary hover:text-primary-foreground transition-all"
           >
-            Solicitar cotización
+            Contáctenos
           </Link>
         </div>
       </section>
