@@ -1,0 +1,63 @@
+{
+  "name": "ProjectDocument",
+  "type": "object",
+  "properties": {
+    "project_id": {
+      "type": "string",
+      "title": "Proyecto"
+    },
+    "title": {
+      "type": "string",
+      "title": "T\u00edtulo"
+    },
+    "file_url": {
+      "type": "string",
+      "format": "uri",
+      "title": "URL del Documento"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "plan",
+        "technical_sheet",
+        "contract",
+        "report",
+        "other"
+      ],
+      "default": "other",
+      "title": "Tipo"
+    },
+    "description": {
+      "type": "string",
+      "title": "Descripci\u00f3n"
+    },
+    "order": {
+      "type": "number",
+      "default": 0,
+      "title": "Orden"
+    }
+  },
+  "required": [
+    "project_id",
+    "title",
+    "file_url"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

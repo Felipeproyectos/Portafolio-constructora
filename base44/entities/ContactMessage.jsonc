@@ -1,0 +1,60 @@
+{
+  "name": "ContactMessage",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "Nombre"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "title": "Correo"
+    },
+    "phone": {
+      "type": "string",
+      "title": "Tel\u00e9fono"
+    },
+    "message": {
+      "type": "string",
+      "title": "Mensaje"
+    },
+    "project_interest": {
+      "type": "string",
+      "title": "Proyecto de Inter\u00e9s"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "new",
+        "read",
+        "responded"
+      ],
+      "default": "new",
+      "title": "Estado"
+    }
+  },
+  "required": [
+    "name",
+    "email",
+    "message"
+  ],
+  "rls": {
+    "create": {},
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

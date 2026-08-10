@@ -1,0 +1,53 @@
+{
+  "name": "CompanyInfo",
+  "type": "object",
+  "properties": {
+    "section": {
+      "type": "string",
+      "enum": [
+        "history",
+        "mission",
+        "vision",
+        "values",
+        "experience"
+      ],
+      "title": "Secci\u00f3n"
+    },
+    "title": {
+      "type": "string",
+      "title": "T\u00edtulo"
+    },
+    "content": {
+      "type": "string",
+      "title": "Contenido"
+    },
+    "order": {
+      "type": "number",
+      "default": 0,
+      "title": "Orden"
+    }
+  },
+  "required": [
+    "section",
+    "title",
+    "content"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

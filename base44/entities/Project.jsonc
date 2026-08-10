@@ -1,0 +1,119 @@
+{
+  "name": "Project",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "Nombre del Proyecto"
+    },
+    "slug": {
+      "type": "string",
+      "title": "URL Slug"
+    },
+    "location": {
+      "type": "string",
+      "title": "Ubicaci\u00f3n"
+    },
+    "year": {
+      "type": "number",
+      "title": "A\u00f1o"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "residential",
+        "commercial",
+        "infrastructure",
+        "urbanization",
+        "remodeling",
+        "civil_works",
+        "maintenance",
+        "industrial"
+      ],
+      "title": "Tipo de Proyecto"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "completed",
+        "in_progress"
+      ],
+      "default": "completed",
+      "title": "Estado"
+    },
+    "client": {
+      "type": "string",
+      "title": "Mandante"
+    },
+    "surface_area": {
+      "type": "number",
+      "title": "Superficie (m\u00b2)"
+    },
+    "duration": {
+      "type": "string",
+      "title": "Duraci\u00f3n"
+    },
+    "description": {
+      "type": "string",
+      "title": "Descripci\u00f3n"
+    },
+    "cover_image": {
+      "type": "string",
+      "title": "Imagen de Portada",
+      "format": "uri"
+    },
+    "gallery_images": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      },
+      "title": "Galer\u00eda de Im\u00e1genes"
+    },
+    "is_featured": {
+      "type": "boolean",
+      "default": false,
+      "title": "Destacado en Portada"
+    },
+    "is_published": {
+      "type": "boolean",
+      "default": true,
+      "title": "Publicado"
+    },
+    "drive_folder_id": {
+      "type": "string",
+      "title": "ID Carpeta Google Drive"
+    },
+    "order": {
+      "type": "number",
+      "default": 0,
+      "title": "Orden"
+    }
+  },
+  "required": [
+    "name",
+    "slug",
+    "location",
+    "year",
+    "type",
+    "status"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

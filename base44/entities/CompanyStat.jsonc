@@ -1,0 +1,45 @@
+{
+  "name": "CompanyStat",
+  "type": "object",
+  "properties": {
+    "label": {
+      "type": "string",
+      "title": "Etiqueta"
+    },
+    "value": {
+      "type": "string",
+      "title": "Valor"
+    },
+    "icon": {
+      "type": "string",
+      "title": "Icono (lucide-react)"
+    },
+    "order": {
+      "type": "number",
+      "default": 0,
+      "title": "Orden"
+    }
+  },
+  "required": [
+    "label",
+    "value"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

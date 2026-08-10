@@ -1,12 +1,25 @@
 import { Toaster } from "@/components/ui/toaster"
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClientInstance } from '@/lib/query-client'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import ScrollToTop from './components/ScrollToTop';
-// Add page imports here
+import Layout from "@/components/Layout";
+import Home from "@/pages/Home";
+import Projects from "@/pages/Projects";
+import ProjectDetail from "@/pages/ProjectDetail";
+import About from "@/pages/About";
+import Capabilities from "@/pages/Capabilities";
+import Clients from "@/pages/Clients";
+import Contact from "@/pages/Contact";
+import ProtectedRoute from "@/components/ProtectedRoute";
+import AdminLayout from "@/components/admin/AdminLayout";
+import AdminDashboard from "@/pages/admin/AdminDashboard";
+import AdminProjects from "@/pages/admin/AdminProjects";
+import AdminProjectEdit from "@/pages/admin/AdminProjectEdit";
+import AdminMessages from "@/pages/admin/AdminMessages";
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -34,7 +47,24 @@ const AuthenticatedApp = () => {
   // Render the main app
   return (
     <Routes>
-      {/* Add your page Route elements here */}
+      <Route element={<Layout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/proyectos" element={<Projects />} />
+        <Route path="/proyectos/:slug" element={<ProjectDetail />} />
+        <Route path="/historia" element={<About />} />
+        <Route path="/capacidades" element={<Capabilities />} />
+        <Route path="/clientes" element={<Clients />} />
+        <Route path="/contacto" element={<Contact />} />
+      </Route>
+      <Route element={<ProtectedRoute unauthenticatedElement={<Navigate to="/login" replace />} />}>
+        <Route element={<AdminLayout />}>
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/admin/proyectos" element={<AdminProjects />} />
+          <Route path="/admin/proyectos/nuevo" element={<AdminProjectEdit />} />
+          <Route path="/admin/proyectos/:id" element={<AdminProjectEdit />} />
+          <Route path="/admin/mensajes" element={<AdminMessages />} />
+        </Route>
+      </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

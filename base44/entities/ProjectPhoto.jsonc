@@ -1,0 +1,61 @@
+{
+  "name": "ProjectPhoto",
+  "type": "object",
+  "properties": {
+    "project_id": {
+      "type": "string",
+      "title": "Proyecto"
+    },
+    "stage_id": {
+      "type": "string",
+      "title": "Etapa"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "title": "URL de la Foto"
+    },
+    "caption": {
+      "type": "string",
+      "title": "Descripci\u00f3n"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "before",
+        "during",
+        "after",
+        "general"
+      ],
+      "default": "general",
+      "title": "Tipo"
+    },
+    "order": {
+      "type": "number",
+      "default": 0,
+      "title": "Orden"
+    }
+  },
+  "required": [
+    "project_id",
+    "url"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
