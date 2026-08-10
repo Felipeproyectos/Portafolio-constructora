@@ -88,7 +88,7 @@ export default function Projects() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold tracking-tight text-white max-w-4xl leading-[0.95]"
+            className="text-4xl md:text-7xl lg:text-8xl font-heading font-bold tracking-tight text-white max-w-4xl leading-[1.05] md:leading-[0.95]"
           >
             Construcción y remodelación <span className="italic font-normal text-white/85">con sello propio.</span>
           </motion.h1>
