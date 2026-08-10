@@ -46,3 +46,16 @@ export function getProjectTypeLabel(type) {
 export function getProjectStatusLabel(status) {
   return PROJECT_STATUS_LABELS[status] || status;
 }
+
+// El sync con Google Drive a veces re-sube la misma foto con otro hash de
+// almacenamiento (mismo nombre de archivo original al final de la URL).
+// Dedup por ese nombre para no repetir la misma imagen en la galería.
+export function dedupePhotosByOriginalFilename(photos) {
+  const seen = new Set();
+  return photos.filter((p) => {
+    const key = (p.url || "").split("/").pop().replace(/^[a-f0-9]{6,}_/, "");
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
