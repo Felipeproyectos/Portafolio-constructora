@@ -72,7 +72,7 @@ export default function CarouselGallery({ photos, onImageClick }) {
         </AnimatePresence>
 
         <div className="absolute top-4 right-4 pointer-events-none drop-shadow-2xl z-10">
-          <WatermarkLogo size={72} className="opacity-95" />
+          <WatermarkLogo width={88} className="opacity-95" />
         </div>
 
         {photo.caption && (

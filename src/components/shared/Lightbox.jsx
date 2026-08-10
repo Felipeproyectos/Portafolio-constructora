@@ -84,8 +84,8 @@ export default function Lightbox({ images, index, onClose }) {
                   fittingType="fit"
                   className={`w-full h-full object-contain transition-transform duration-300 ${zoomed ? "scale-150 cursor-zoom-out" : "cursor-zoom-in"}`}
                 />
-                <div className="absolute top-4 right-4 pointer-events-none drop-shadow-2xl">
-                  <WatermarkLogo size={88} className="opacity-95" />
+                <div className="absolute top-6 right-6 pointer-events-none drop-shadow-2xl">
+                  <WatermarkLogo width={120} className="opacity-95" />
                 </div>
               </div>
               <div className="mt-4 flex items-center justify-between text-white">

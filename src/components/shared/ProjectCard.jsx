@@ -33,8 +33,8 @@ export default function ProjectCard({ project, index = 0 }) {
 
           <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/0 to-foreground/0 opacity-60 group-hover:opacity-90 transition-opacity duration-500" />
 
-          <div className="absolute top-4 right-4 drop-shadow-2xl">
-            <WatermarkLogo size={56} className="opacity-95 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="absolute top-3 right-3 drop-shadow-2xl">
+            <WatermarkLogo width={64} className="opacity-95 group-hover:opacity-100 transition-opacity duration-500" />
           </div>
 
           <div className="absolute top-4 left-4 flex items-center gap-2">

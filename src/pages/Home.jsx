@@ -43,8 +43,8 @@ export default function Home() {
         </motion.div>
         <div className="absolute inset-0 bg-gradient-to-b from-foreground/40 via-foreground/30 to-foreground/80" />
 
-        <div className="absolute top-24 right-8 lg:right-10 z-10 drop-shadow-2xl">
-          <WatermarkLogo size={96} className="opacity-90" />
+        <div className="absolute top-24 right-8 lg:right-12 z-10 drop-shadow-2xl">
+          <WatermarkLogo width={140} className="opacity-90" />
         </div>
 
         <motion.div style={{ opacity: heroOpacity }} className="relative z-10 h-full flex flex-col justify-center max-w-[1400px] mx-auto px-6 lg:px-10">
