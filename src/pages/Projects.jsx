@@ -35,7 +35,7 @@ export default function Projects() {
   return (
     <div>
       {/* HEADER + COLLAGE — Dark theme */}
-      <section className="bg-[#1a1a1a] pt-32 pb-20 lg:pt-40 lg:pb-28">
+      <section className="bg-foreground pt-32 pb-20 lg:pt-40 lg:pb-28">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
             <div className="lg:col-span-5">
@@ -43,13 +43,13 @@ export default function Projects() {
                 initial={{ width: 0 }}
                 animate={{ width: 48 }}
                 transition={{ duration: 0.6 }}
-                className="h-px bg-[#F5B01D] mb-8"
+                className="h-px bg-primary mb-8"
               />
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="font-mono text-xs tracking-[0.2em] uppercase text-[#F5B01D] mb-6"
+                className="font-mono text-xs tracking-[0.2em] uppercase text-primary mb-6"
               >
                 — Portafolio de Obras
               </motion.p>
@@ -57,10 +57,10 @@ export default function Projects() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold tracking-tight text-white leading-[1.05]"
+                className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold tracking-tight text-white leading-[1.05]"
               >
                 Construcción y remodelación{" "}
-                <span className="italic font-serif">con sello propio.</span>
+                <span className="italic font-normal text-white/85">con sello propio.</span>
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
