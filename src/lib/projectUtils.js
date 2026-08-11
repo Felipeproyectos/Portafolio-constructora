@@ -1,3 +1,7 @@
+import curatedPhotosList from "./curated-photos.json";
+
+const curatedFilenames = new Set(curatedPhotosList);
+
 export const PROJECT_TYPE_LABELS = {
   residential: "Residencial",
   commercial: "Comercial",
