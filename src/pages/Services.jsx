@@ -7,13 +7,13 @@ const SERVICES = [
     title: "Fabricación de ventanas termopanel",
     description: "Ventanas de doble vidriado hermético (DVH) a medida, con aislación térmica y acústica superior para cada proyecto.",
     icon: Frame,
-    image: "/photos/services/ventana-termopanel.jpg",
+    image: "/photos/services/ventana-termopanel-v2.jpg",
   },
   {
     title: "Fabricación de panel SIP",
     description: "Paneles estructurales aislados (SIP) para una construcción rápida, eficiente y de alto desempeño térmico.",
     icon: Layers,
-    image: "/photos/services/panel-sip.jpg",
+    image: "/photos/services/panel-sip-v2.jpg",
   },
   {
     title: "Aislante con celulosa proyectada",
@@ -25,7 +25,7 @@ const SERVICES = [
     title: "Venta e instalación de techumbre y hojalatería",
     description: "Suministro e instalación de cubiertas, canaletas y hojalatería en general, con terminaciones de calidad y estanqueidad garantizada.",
     icon: HomeIcon,
-    image: "/photos/services/techumbre-hojalateria.jpg",
+    image: "/photos/services/techumbre-hojalateria-v2.jpg",
   },
 ];
 
