@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { base44 } from "@/api/base44Client";
 import { Image } from "@/components/ui/image";
 import { FileText, ArrowLeft, Download, Check } from "lucide-react";
-import { getProjectTypeLabel, dedupePhotosByOriginalFilename, parseDescription } from "@/lib/projectUtils";
+import { getProjectTypeLabel, dedupePhotosByOriginalFilename, markCurated, parseDescription } from "@/lib/projectUtils";
 import CarouselGallery from "@/components/shared/CarouselGallery";
 import Lightbox from "@/components/shared/Lightbox";
 
@@ -61,9 +61,9 @@ export default function ProjectDetail() {
     );
   }
 
-  const generalPhotos = dedupePhotosByOriginalFilename(photos.filter((p) => p.type === "general" || !p.type));
-  // Fotos curadas (order < 500) se muestran primero; el resto queda detrás de "ver más".
-  const curatedPhotos = generalPhotos.filter((p) => (p.order ?? 0) < 500);
+  const generalPhotos = markCurated(dedupePhotosByOriginalFilename(photos.filter((p) => p.type === "general" || !p.type)));
+  // Fotos curadas se muestran primero; el resto queda detrás de "ver más".
+  const curatedPhotos = generalPhotos.filter((p) => p.curated);
   const hiddenPhotoCount = generalPhotos.length - curatedPhotos.length;
   const displayPhotos = showAllPhotos || curatedPhotos.length === 0 ? generalPhotos : curatedPhotos;
 
