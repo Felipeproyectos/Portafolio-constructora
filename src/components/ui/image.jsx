@@ -1,6 +1,7 @@
 import * as React from "react"
 import { useSize } from "@/hooks/use-size"
 import { cn } from "@/lib/utils"
+import { resolvePhotoUrl } from "@/lib/photo-manifest"
 import {
   buildSrcSet,
   buildTransformUrl,
@@ -118,7 +119,7 @@ ResponsiveImage.displayName = "ResponsiveImage"
 const Image = React.forwardRef(
   (
     {
-      src,
+      src: rawSrc,
       fittingType = "fill",
       originWidth,
       originHeight,
@@ -130,6 +131,9 @@ const Image = React.forwardRef(
     },
     ref
   ) => {
+    // Fotos de proyectos: sirve la copia liviana pre-comprimida si existe
+    // para este archivo (ver src/lib/photo-manifest.js); si no, el original.
+    const src = resolvePhotoUrl(rawSrc)
     const parsedSource = src && src !== FALLBACK_IMAGE_URL ? parseWixMediaUrl(src) : null
     const initialMode = parsedSource ? IMAGE_LOAD_MODE.OPTIMIZED : IMAGE_LOAD_MODE.ORIGINAL
     const [loadState, setLoadState] = React.useState({ src, mode: initialMode })
