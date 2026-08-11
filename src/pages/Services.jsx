@@ -13,7 +13,7 @@ const SERVICES = [
     title: "Fabricación de panel SIP",
     description: "Paneles estructurales aislados (SIP) para una construcción rápida, eficiente y de alto desempeño térmico.",
     icon: Layers,
-    image: "/photos/services/panel-sip-v2.jpg",
+    image: "/photos/services/panel-sip-v3.jpg",
   },
   {
     title: "Aislante con celulosa proyectada",
