@@ -8,6 +8,7 @@ const LOGO_URL = "https://media.base44.com/images/public/6a7a0d673c6e832f34f21db
 const NAV_LINKS = [
   { label: "Inicio", path: "/" },
   { label: "Proyectos", path: "/proyectos" },
+  { label: "Servicios", path: "/servicios" },
 ];
 
 export default function Navbar() {

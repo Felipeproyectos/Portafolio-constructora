@@ -10,6 +10,7 @@ import Layout from "@/components/Layout";
 import Home from "@/pages/Home";
 import Projects from "@/pages/Projects";
 import ProjectDetail from "@/pages/ProjectDetail";
+import Services from "@/pages/Services";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import AdminLayout from "@/components/admin/AdminLayout";
 import AdminDashboard from "@/pages/admin/AdminDashboard";
@@ -47,6 +48,7 @@ const AuthenticatedApp = () => {
         <Route path="/" element={<Home />} />
         <Route path="/proyectos" element={<Projects />} />
         <Route path="/proyectos/:slug" element={<ProjectDetail />} />
+        <Route path="/servicios" element={<Services />} />
       </Route>
       <Route element={<ProtectedRoute unauthenticatedElement={<Navigate to="/login" replace />} />}>
         <Route element={<AdminLayout />}>
