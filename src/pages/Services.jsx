@@ -19,7 +19,7 @@ const SERVICES = [
     title: "Aislante con celulosa proyectada",
     description: "Aplicación de celulosa proyectada en muros y techumbres para mejorar la aislación térmica, acústica y la eficiencia energética.",
     icon: SprayCan,
-    image: "/photos/services/celulosa-proyectada.jpg",
+    image: "/photos/services/celulosa-proyectada-v2.jpg",
   },
   {
     title: "Venta e instalación de techumbre y hojalatería",
